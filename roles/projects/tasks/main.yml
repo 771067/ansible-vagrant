@@ -1,0 +1,11 @@
+- name: Create linked in projects
+  shell: cd /home
+    && rm -f tvrain && ln -s /projects/tvrain/www tvrain
+    && rm -f bg && ln -s /projects/bg/www bg
+    && rm -f localhost && ln -s /projects/localhost localhost
+    && rm -f python && ln -s /projects/python python
+    && rm -f kronoki && ln -s /projects/kronoki/kronokisite kronoki
+    && rm -f reiki && ln -s /projects/freelance/evgeniadatsko/reiki/www reiki
+    && rm -f olgamaurer && ln -s /projects/freelance/olgamaurer/www olgamaurer
+    && rm -f src && ln -s /projects/src src
+    && rm -f yii && ln -s /projects/src yii

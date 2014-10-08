@@ -1,0 +1,10 @@
+- name: install applications
+  apt: pkg={{ item }}
+  with_items:
+    - mongodb
+    - memcached
+    - mc
+    - htop
+    - unzip
+    - git
+    - language-pack-ru

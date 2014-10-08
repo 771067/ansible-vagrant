@@ -1,0 +1,78 @@
+- name: install
+  apt: pkg={{ item }}
+  with_items:
+    - php5
+    - php5-cli
+    - php5-fpm
+    - php5-memcache
+    - php5-memcached
+    - php5-mcrypt
+    - php5-mysql
+    - php5-gd
+    - php5-curl
+    - php5-xmlrpc
+    - php5-pgsql
+    - php5-xsl
+    - php5-imagick
+    - php5-imap
+    - php5-mongo
+    - php5-dev
+    - php-pear
+
+- lineinfile:
+    dest: '/etc/php5/fpm/pool.d/www.conf'
+    regexp: 'listen = /var/run/php5-fpm.sock'
+    line: 'listen = 127.0.0.1:9000'
+
+- lineinfile:
+    dest: '/etc/php5/fpm/php.ini'
+    regexp: 'short_open_tag = Off'
+    line: 'short_open_tag = On'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/php5/fpm/php.ini'
+    regexp: 'post_max_size = 8M'
+    line: 'post_max_size = 1G'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/php5/fpm/php.ini'
+    regexp: 'upload_max_filesize = 2M'
+    line: 'upload_max_filesize = 1G'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/php5/cli/php.ini'
+    regexp: 'short_open_tag = Off'
+    line: 'short_open_tag = On'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/php5/cli/php.ini'
+    regexp: 'post_max_size = 8M'
+    line: 'post_max_size = 1G'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/php5/cli/php.ini'
+    regexp: 'upload_max_filesize = 2M'
+    line: 'upload_max_filesize = 1G'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/php5/fpm/pool.d/www.conf'
+    regexp: 'user = www-data'
+    line: 'user = vagrant;'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/php5/fpm/pool.d/www.conf'
+    regexp: 'group = www-data'
+    line: 'group = vagrant;'
+    backrefs: yes
+
+- name: restart
+  service:
+    name: php5-fpm
+    state: restarted

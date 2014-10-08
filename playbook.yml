@@ -1,0 +1,12 @@
+- hosts: webservers
+  sudo: yes
+  gather_facts: no
+  vars:
+    - mysql_root_password: "******"
+  roles:
+  - { role: started }
+  - { role: projects }
+  - { role: nginx }
+  - { role: mysql }
+  - { role: php5 }
+  - { role: applications }

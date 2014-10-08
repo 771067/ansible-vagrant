@@ -1,0 +1,42 @@
+- name: install
+  apt: pkg={{ item }}
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-mysqldb
+
+- lineinfile:
+    dest: '/etc/mysql/my.cnf'
+    regexp: 'user[\s]+\=[\s]+mysql'
+    line: 'user = root'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/mysql/my.cnf'
+    regexp: 'datadir[\s]+\=[\s]+/var/lib/mysql'
+    line: 'datadir = /data/mysql/'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/apparmor.d/usr.sbin.mysqld'
+    regexp: '/var/lib/mysql/\*\* rwk,'
+    line: '  /data/mysql/** rwk,'
+    backrefs: yes
+
+- lineinfile:
+    dest: '/etc/apparmor.d/usr.sbin.mysqld'
+    regexp: '/var/lib/mysql/ r,'
+    line: '  /data/mysql/ r,'
+    backrefs: yes
+
+- name: change root password
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password}}"
+    state: present
+  ignore_errors: yes
+
+- name: restart
+  service:
+    name: mysql
+    state: restarted

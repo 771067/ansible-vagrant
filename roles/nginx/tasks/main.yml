@@ -1,0 +1,22 @@
+- name: install
+  apt: name=nginx
+
+- name: configure
+  template:
+    src: default.conf
+    dest: /etc/nginx/sites-available/default.conf
+
+- file: path=/etc/nginx/sites-enabled/default state=absent
+- file: path=/etc/nginx/sites-available/default state=absent
+- file: src=/etc/nginx/sites-available/default.conf dest=/etc/nginx/sites-enabled/default.conf state=link
+
+- lineinfile:
+    dest: '/etc/nginx/nginx.conf'
+    regexp: 'user www-data;'
+    line: 'user vagrant;'
+    backrefs: yes
+
+- name:  restart
+  service:
+    name: nginx
+    state: restarted
