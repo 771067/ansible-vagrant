@@ -3,7 +3,6 @@
   with_items:
     - mysql-server
     - mysql-client
-    - python-mysqldb
 
 - lineinfile:
     dest: '/etc/mysql/my.cnf'

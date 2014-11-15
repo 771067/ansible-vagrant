@@ -1,0 +1,6 @@
+- name: install
+  apt: pkg={{ item }}
+  with_items:
+    - python-pip
+    - python-mysqldb
+    - python-pil

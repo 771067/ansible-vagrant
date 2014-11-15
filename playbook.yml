@@ -9,4 +9,5 @@
   - { role: nginx }
   - { role: mysql }
   - { role: php5 }
+  - { role: python }
   - { role: applications }
