@@ -3,15 +3,7 @@
 
 - name: Update apt
   apt: update_cache=yes cache_valid_time=3600
-  apt: upgrade=dist
-
-- name: Copy ssh-key for the user vagrant
-  copy: src=~/.ssh/id_rsa.pub dest=/home/vagrant/.ssh/temp_1 owner=vagrant group=root mode=0600
-
-- name: Merge a ssh-keys for the user vagrant
-  shell: head -n1 authorized_keys |tee authorized_keys; cat authorized_keys temp_1 > temp_2;rm temp_1; mv temp_2 authorized_keys;chown vagrant authorized_keys; chmod 0600 authorized_keys
-  args:
-      chdir: /home/vagrant/.ssh
+#  apt: upgrade=dist
 
 - name: Create a ssh-key for the root user
   copy: src=~/.ssh/id_rsa.pub dest=/root/.ssh/authorized_keys owner=root group=root mode=0600

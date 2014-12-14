@@ -5,6 +5,7 @@
     - mysql_root_password: "******"
   roles:
   - { role: started }
+  - { role: mongodb }
   - { role: projects }
   - { role: nginx }
   - { role: mysql }
