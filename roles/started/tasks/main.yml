@@ -1,8 +1,8 @@
 - name: Set time zone
   shell: cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 
-- name: Update apt
-  apt: update_cache=yes cache_valid_time=3600
+#- name: Update apt
+#  apt: update_cache=yes cache_valid_time=3600
 #  apt: upgrade=dist
 
 - name: Create a ssh-key for the root user

@@ -8,7 +8,7 @@
   - { role: mongodb }
   - { role: projects }
   - { role: nginx }
+  - { role: python }
   - { role: mysql }
   - { role: php5 }
-  - { role: python }
   - { role: applications }

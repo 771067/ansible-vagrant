@@ -5,3 +5,4 @@
     - python-mysqldb
     - python-pil
     - python-pymongo
+    - python-virtualenv

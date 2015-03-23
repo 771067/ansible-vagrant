@@ -10,32 +10,10 @@
     line: 'user = root'
     backrefs: yes
 
-- lineinfile:
-    dest: '/etc/mysql/my.cnf'
-    regexp: 'datadir[\s]+\=[\s]+/var/lib/mysql'
-    line: 'datadir = /data/mysql/'
-    backrefs: yes
-
-- lineinfile:
-    dest: '/etc/apparmor.d/usr.sbin.mysqld'
-    regexp: '/var/lib/mysql/\*\* rwk,'
-    line: '  /data/mysql/** rwk,'
-    backrefs: yes
-
-- lineinfile:
-    dest: '/etc/apparmor.d/usr.sbin.mysqld'
-    regexp: '/var/lib/mysql/ r,'
-    line: '  /data/mysql/ r,'
-    backrefs: yes
-
-- name: change root password
-  mysql_user:
-    name: root
-    password: "{{ mysql_root_password}}"
-    state: present
-  ignore_errors: yes
-
 - name: restart
   service:
     name: mysql
     state: restarted
+
+- name: Create tables from dumps
+  command: python /projects/scripts/create_tables_from_dumps.py
