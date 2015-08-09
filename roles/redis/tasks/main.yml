@@ -1,0 +1,10 @@
+- name: add repository
+  shell: add-apt-repository -y ppa:chris-lea/redis-server
+
+- apt: update_cache=yes
+
+- name: install
+  apt: pkg={{ item }}
+  with_items:
+    - redis-server
+    - php5-redis

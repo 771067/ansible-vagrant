@@ -1,0 +1,46 @@
+---
+- name: restart nginx
+  service: name=nginx state=restarted
+  sudo: true
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+  sudo: true
+
+- name: stop nginx
+  service: name=nginx state=stopped
+  sudo: true
+
+
+- name: restart php5-fpm
+  shell: service php5-fpm restart
+  sudo: true
+
+
+- name: restart mysql
+  service: name=mysql state=restarted
+  sudo: true
+
+
+- name: restart ssh
+  action: service name=ssh state=restarted enabled=yes
+  sudo: true
+
+
+- name: restart munin-node
+  shell: service munin-node restart
+
+
+- name: reload iptables
+  action: shell /sbin/iptables-restore < /etc/iptables.rules
+  sudo: true
+
+- name: restart lsyncd
+  service: name=lsyncd state=restarted
+  sudo: true
+
+- name: update timezone
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: restart mongod
+  shell: service mongod restart

@@ -1,14 +1,19 @@
 - hosts: webservers
   sudo: yes
-  gather_facts: no
+  gather_facts: yes
+
+  handlers:
+  - include: handlers.yml
+
   vars:
     - mysql_root_password: "******"
   roles:
   - { role: started }
-  - { role: mongodb }
   - { role: projects }
   - { role: nginx }
   - { role: python }
   - { role: mysql }
   - { role: php5 }
   - { role: applications }
+#  - { role: redis }
+#  - { role: mongodb }

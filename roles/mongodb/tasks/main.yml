@@ -10,3 +10,9 @@
   apt: pkg={{ item }}
   with_items:
     - mongodb-org
+
+
+- name: install configuration file
+  copy: src=mongod.conf dest=/etc/mongod.conf
+  notify:
+    - restart mongod

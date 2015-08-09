@@ -1,3 +1,6 @@
+- name: add repository
+  apt_repository: repo='ppa:ondrej/php5'
+
 - name: install
   apt: pkg={{ item }}
   with_items:
@@ -17,6 +20,7 @@
     - php5-imap
     - php5-mongo
     - php5-dev
+    - php5-xdebug
     - php-pear
 
 - lineinfile:
@@ -50,12 +54,6 @@
 
 - lineinfile:
     dest: '/etc/php5/cli/php.ini'
-    regexp: 'post_max_size = 8M'
-    line: 'post_max_size = 1G'
-    backrefs: yes
-
-- lineinfile:
-    dest: '/etc/php5/cli/php.ini'
     regexp: 'upload_max_filesize = 2M'
     line: 'upload_max_filesize = 1G'
     backrefs: yes
@@ -73,6 +71,4 @@
     backrefs: yes
 
 - name: restart
-  service:
-    name: php5-fpm
-    state: restarted
+  shell: service php5-fpm restart
