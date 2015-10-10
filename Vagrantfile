@@ -10,10 +10,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network "private_network", ip:"192.168.0.101"
 
-  #config.ssh.username = 'root'
-  #config.ssh.password = '1'
-  #config.ssh.insert_key = 'true'
-  # config.ssh.private_key_path = '~/.ssh/id_rsa'
+
+  # config.vm.define "web1" do |web|
+  # end
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"

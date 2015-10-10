@@ -1,2 +1,3 @@
 [webservers]
 default ansible_ssh_host=192.168.0.101 ansible_ssh_user=root
+web1 ansible_ssh_host=192.168.0.102 ansible_ssh_user=root
