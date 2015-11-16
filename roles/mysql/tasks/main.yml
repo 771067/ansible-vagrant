@@ -15,5 +15,5 @@
 - name: restart
   shell: service mysql restart
 
-#- name: Create tables from dumps
-#  command: python /projects/scripts/create_tables_from_dumps.py
+- name: Create tables from dumps
+  command: python /projects/scripts/create_tables_from_dumps.py

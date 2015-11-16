@@ -4,7 +4,9 @@
 - name: add key ppa:nginx
   apt_key: url="http://nginx.org/keys/nginx_signing.key"  state=present
 
-- apt: update_cache=yes
+- name: Update apt
+  apt: update_cache=yes cache_valid_time=3600
+  apt: upgrade=dist
 
 - name: install
   apt: name=nginx

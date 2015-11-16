@@ -15,5 +15,5 @@
   - { role: mysql }
   - { role: php5 }
   - { role: applications }
-#  - { role: redis }
-#  - { role: mongodb }
+  - { role: redis }
+  - { role: mongodb }

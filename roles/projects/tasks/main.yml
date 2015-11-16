@@ -9,3 +9,4 @@
     && rm -f olgamaurer && ln -s /projects/freelance/olgamaurer/www olgamaurer
     && rm -f src && ln -s /projects/src src
     && rm -f yii && ln -s /projects/src yii
+    && rm -f talantino && ln -s /projects/freelance/evgeniadatsko/talantino/www talantino
